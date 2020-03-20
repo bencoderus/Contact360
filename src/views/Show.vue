@@ -80,7 +80,6 @@
 </template>
 
 <script>
-let token = localStorage.getItem("token");
 export default {
   name: "Showcontact",
   data() {
@@ -97,6 +96,7 @@ export default {
       this.$router.push({ name: "Editcontact" });
     },
     remove(id) {
+      let token = localStorage.getItem("token");
       let data = {
         id: id
       };
@@ -125,6 +125,7 @@ export default {
   created() {
     let lastid = localStorage.getItem("lastid");
     let user = localStorage.getItem("user");
+    let token = localStorage.getItem("token");
     this.user = JSON.parse(user);
     let data = {
       id: lastid

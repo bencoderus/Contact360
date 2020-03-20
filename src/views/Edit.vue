@@ -72,7 +72,6 @@
 </template>
 
 <script>
-    let token = localStorage.getItem("token");
 export default {
   name: "EditContact",
   data() {
@@ -91,6 +90,7 @@ export default {
   },
   methods: {
     save() {
+      let token = localStorage.getItem("token");
       this.loading = true;
       this.btntext ="Please wait"
     let options = {
@@ -121,6 +121,7 @@ this.$toast.warning(res.data.message)
     },
   },
   created() {
+    let token = localStorage.getItem("token");
     let lastid = localStorage.getItem("lastid");
     let user = localStorage.getItem("user");
     this.user = JSON.parse(user);
