@@ -1,4 +1,5 @@
-# vuephone
+# Contact360
+This project is based on Mongodb, Express, Vue and Nodejs (MEVN) stack. This is the frontend part of Contact360 which is based on Vuejs, it also comes with Google PWA support.
 
 ## Project setup
 ```
@@ -20,5 +21,10 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Demo
+https://contact360.netlify.com
+
+### Got issues?
+if you are currently facing any issue you can contact me via hello@biduwe.com for help.
+
+**Cheer** 🎉
