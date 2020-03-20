@@ -72,7 +72,6 @@
 </template>
 
 <script>
-let token = localStorage.getItem("token");
 export default {
   name: "NewContact",
   data() {
@@ -91,6 +90,7 @@ export default {
   },
   methods: {
     save() {
+      let token = localStorage.getItem("token");
       this.loading = true;
       this.btntext = "Please wait";
       let options = {

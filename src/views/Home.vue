@@ -1,15 +1,15 @@
 <template>
   <div class="form-holder">
-                 <loading :active.sync="loading" 
-        :can-cancel="false" 
-        :width="45"
-        :is-full-page="true"></loading>
+    <loading
+      :active.sync="loading"
+      :can-cancel="false"
+      :width="45"
+      :is-full-page="true"
+    ></loading>
     <div class="form-content">
       <div class="form-items">
         <div class="website-logo-inside">
-          <a href="/">
-            <h3>Home</h3>
-          </a>
+          <h3>Home</h3>
         </div>
         <div class="page-links">
           <router-link to="/"><a class="active">Login</a></router-link>
@@ -48,7 +48,8 @@
                   class="custom-control-input"
                   id="customCheck1"
                   required
-                checked/>
+                  checked
+                />
                 <label class="custom-control-label" for="customCheck1"
                   >Remember me</label
                 >

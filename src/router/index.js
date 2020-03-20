@@ -1,4 +1,5 @@
 import Home from '../views/Home.vue'
+import Pagenotfound from '../views/Pagenotfound.vue'
 import Register from '../views/Register.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Newcontact from '../views/New.vue'
@@ -35,7 +36,12 @@ const routes = [
     component: Home,
     beforeEnter: auth
   },
-
+  {
+    path: '*',
+    name: 'Pagenotfound',
+    component: Pagenotfound  
+  }
+    ,
   {
     path: '/register',
     name: 'Register',
