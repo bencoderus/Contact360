@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+        <div class="form-body on-top-mobile">
+        <div class="website-logo">
+          
+        </div>
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder simple-info">
+                    <div><img src="/images/graphic6.svg" alt=""></div>
+                    <div><h3>{{this.$config.NAME}}</h3></div>
+                    <div><p>Access all your contacts <br>remotely from any location</p></div>
+                </div>
+            </div>
+
+    <router-view/>
+  </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+ name: "App",
+ 
+ data(){
+    return {
+
+    }
+  },
+  //   created() {
+  //   if (this.$workbox) {
+  //     this.$workbox.addEventListener("waiting", () => {
+  //       this.showUpgradeUI = true;
+  //     });
+  //   }
+  // },
+
+  // methods: {
+  //   async accept() {
+  //     this.showUpgradeUI = false
+  //     await this.$workbox.messageSW({ type: "SKIP_WAITING" });
+  //   }
+  // },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
