@@ -1,6 +1,6 @@
 {
-    "name": "Phonebook",
-    "short_name": "Phonebook",
+    "name": "Contact360",
+    "short_name": "Contact360",
     "icons": [
       {
         "src": "./img/icons/android-chrome-192x192.png",

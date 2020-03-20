@@ -1,5 +1,5 @@
 const data = {
-    NAME: "Phonebook",
+    NAME: "Contact360",
     ROOT_API: "https://vuephonebook.herokuapp.com/api",
 
 };
