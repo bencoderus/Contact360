@@ -1,9 +1,11 @@
 <template>
   <div class="form-holder">
-       <loading :active.sync="loading" 
-        :can-cancel="false" 
-       :width="45"
-        :is-full-page="true"></loading>
+    <loading
+      :active.sync="loading"
+      :can-cancel="false"
+      :width="45"
+      :is-full-page="true"
+    ></loading>
     <div class="form-content">
       <div class="form-items">
         <div class="website-logo-inside">
@@ -29,8 +31,17 @@
             <a>New contact</a>
           </router-link>
         </div>
+        <div class="form-group">
+          <input
+            type="search"
+            placeholder="Search contacts"
+            v-model="query"
+            class="form-control rounded-0"
+          />
+        </div>
+
         <div class="scrollable">
-          <div class="contacts" v-for="contact in contacts" :key="contact.id">
+          <div class="contacts" v-for="contact in mycontacts" :key="contact.id">
             <a
               href="/contact/show"
               @click.prevent="showcontact(contact._id)"
@@ -62,6 +73,7 @@ export default {
   data() {
     return {
       loading: true,
+      query: "",
       sync: false,
       user: {},
       contacts: []
@@ -79,14 +91,14 @@ export default {
         return `${val} contact`;
       }
     },
-    logout(){
-      localStorage.clear()
-      this.$router.push({name: "Home"})
+    logout() {
+      localStorage.clear();
+      this.$router.push({ name: "Home" });
     }
   },
 
   created() {
-    document.title ="Dashbord"
+    document.title = "My contacts";
     let user = localStorage.getItem("user");
     let token = localStorage.getItem("token");
     this.user = JSON.parse(user);
@@ -101,17 +113,25 @@ export default {
     this.$http
       .post(`${this.$config.ROOT_API}/contact/all`, data, options)
       .then(res => {
-        this.loading = false
+        this.loading = false;
         this.contacts = res.data.contacts;
       })
       .catch(err => {
-       this.loading = false
+        this.loading = false;
         console.log(err.response);
-        if(err.response.status == 401){
-          this.logout()
-          this.$toast.warning("Please login first!")
+        if (err.response.status == 401) {
+          this.logout();
+          this.$toast.warning("Please login first!");
         }
       });
+  },
+  computed: {
+    mycontacts() {
+      let query = this.query.toLowerCase();
+      return this.contacts.filter(contact => {
+        return contact.name.toLowerCase().includes(query);
+      });
+    }
   }
 };
 </script>

@@ -1,9 +1,11 @@
 <template>
   <div class="form-holder">
-             <loading :active.sync="loading" 
-        :can-cancel="false" 
-        :width="45"
-        :is-full-page="true"></loading>
+    <loading
+      :active.sync="loading"
+      :can-cancel="false"
+      :width="45"
+      :is-full-page="true"
+    ></loading>
     <div class="form-content">
       <div class="form-items">
         <div class="website-logo-inside">
@@ -66,7 +68,7 @@
                 <a
                   href="/contact/remove"
                   class="btn btn-sm rounded-0 btn-danger"
-                  @click.prevent="remove(contact._id)"
+                  @click.prevent="removeContact(contact._id)"
                 >
                   Delete
                 </a>
@@ -86,6 +88,7 @@ export default {
     return {
       sync: false,
       loading: true,
+      deleteid: "",
       user: {},
       contact: {}
     };
@@ -95,30 +98,44 @@ export default {
       localStorage.setItem("lastid", id);
       this.$router.push({ name: "Editcontact" });
     },
-    remove(id) {
-      let token = localStorage.getItem("token");
-      let data = {
-        id: id
-      };
-      let options = {
-        headers: {
-          Authorization: `Bearer ${token}`
+    removeContact(id) {
+      this.$swal({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        if (result.value) {
+          this.loading = true;
+          let token = localStorage.getItem("token");
+          let data = {
+            id: id
+          };
+          let options = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          };
+          this.$http
+            .post(`${this.$config.ROOT_API}/contact/delete`, data, options)
+            .then(res => {
+              if (res.data.success) {
+                this.$swal("Deleted!", res.data.message, "success");
+                this.$router.push({ name: "Dashboard" });
+              } else {
+                this.$swal("Oops", res.data.message, "warning");
+              }
+            })
+            .catch(err => {
+              console.log(err);
+              this.$toast.error("Network error!");
+            });
         }
-      };
-      this.$http
-        .post(`${this.$config.ROOT_API}/contact/delete`, data, options)
-        .then(res => {
-          if (res.data.success) {
-            this.$toast.success(res.data.message);
-            this.$router.push({ name: "Dashboard" });
-          } else {
-            this.$toast.warning(res.data.message);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-          this.$toast.error("Network error!");
-        });
+      });
+
     }
   },
 
@@ -138,7 +155,7 @@ export default {
     this.$http
       .post(`${this.$config.ROOT_API}/contact/fetch`, data, options)
       .then(res => {
-           this.loading = false
+        this.loading = false;
         if (res.data.success) {
           this.contact = res.data.contact;
           this.sync = true;
@@ -148,7 +165,7 @@ export default {
         }
       })
       .catch(err => {
-           this.loading = false
+        this.loading = false;
         console.log(err);
         this.$toast.error("Network error!");
       });

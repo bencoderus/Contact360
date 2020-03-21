@@ -15,7 +15,7 @@
           <router-link to="/"><a class="active">Go Back</a></router-link>
         </div>
 
-<p>Sorry the page, You are looking for was not found.</p>
+        <p>Sorry the page, You are looking for was not found.</p>
       </div>
     </div>
   </div>
@@ -23,16 +23,7 @@
 
 <script>
 export default {
-  name: "Page not found",
-  data() {
-    return {
-      user: {
-        email: "",
-        pin: ""
-      }
-    };
-  },
-
+  name: "Page not found"
 };
 </script>
 
