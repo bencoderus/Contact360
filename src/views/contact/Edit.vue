@@ -1,11 +1,6 @@
 <template>
   <div class="form-holder">
-    <loading
-      :active.sync="loading"
-      :can-cancel="false"
-      :width="45"
-      :is-full-page="true"
-    ></loading>
+    <loading :active.sync="loading" :can-cancel="false" :width="45" :is-full-page="true"></loading>
     <div class="form-content">
       <div class="form-items">
         <div class="website-logo-inside">
@@ -14,10 +9,12 @@
           </a>
         </div>
         <div class="page-links">
-          <router-link to="/register"
-            ><a class="active">Edit contact</a></router-link
-          >
-          <router-link to="/contact/show"><a>Go back</a></router-link>
+          <router-link to="/register">
+            <a class="active">Edit contact</a>
+          </router-link>
+          <router-link to="/contact/show">
+            <a>Go back</a>
+          </router-link>
         </div>
 
         <form @submit.prevent="save()">
@@ -38,7 +35,6 @@
                 class="form-control"
                 v-model="contact.email"
                 placeholder="Email address"
-                required
               />
 
               <input
@@ -61,9 +57,7 @@
                   :disabled="sending"
                   type="submit"
                   class="ibtn less-padding"
-                >
-                  {{ btntext }}
-                </button>
+                >{{ btntext }}</button>
               </div>
             </div>
           </div>
