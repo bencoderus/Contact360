@@ -118,7 +118,7 @@ export default {
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user));
             this.$toast.success(res.data.message);
-            this.$router.push({name: "Dashboard"})
+            this.$router.push({ name: "Dashboard" });
           } else {
             this.$toast.warning(res.data.message);
           }

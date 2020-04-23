@@ -1,9 +1,11 @@
 <template>
   <div class="form-holder">
-                 <loading :active.sync="loading" 
-        :can-cancel="false" 
-        :width="45"
-        :is-full-page="true"></loading>
+    <loading
+      :active.sync="loading"
+      :can-cancel="false"
+      :width="45"
+      :is-full-page="true"
+    ></loading>
     <div class="form-content">
       <div class="form-items">
         <div class="website-logo-inside">
@@ -36,12 +38,11 @@
                 class="form-control"
                 v-model="contact.email"
                 placeholder="Email address"
-                required
               />
 
               <input
                 type="text"
-                minlength="11"
+                minlength="10"
                 maxlength="15"
                 name="phoneno"
                 class="form-control"
