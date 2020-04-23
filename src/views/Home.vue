@@ -1,19 +1,18 @@
 <template>
   <div class="form-holder">
-    <loading
-      :active.sync="loading"
-      :can-cancel="false"
-      :width="45"
-      :is-full-page="true"
-    ></loading>
+    <loading :active.sync="loading" :can-cancel="false" :width="45" :is-full-page="true"></loading>
     <div class="form-content">
       <div class="form-items">
         <div class="website-logo-inside">
           <h3>Home</h3>
         </div>
         <div class="page-links">
-          <router-link to="/"><a class="active">Login</a></router-link>
-          <router-link to="/register"><a>Create account</a></router-link>
+          <router-link to="/">
+            <a class="active">Login</a>
+          </router-link>
+          <router-link to="/register">
+            <a>Create account</a>
+          </router-link>
         </div>
 
         <form @submit.prevent="login()">
@@ -34,7 +33,7 @@
                 name="password"
                 class="form-control"
                 v-model="user.pin"
-                placeholder="Your Pin"
+                placeholder="Your Password"
                 required
               />
             </div>
@@ -50,9 +49,7 @@
                   required
                   checked
                 />
-                <label class="custom-control-label" for="customCheck1"
-                  >Remember me</label
-                >
+                <label class="custom-control-label" for="customCheck1">Remember me</label>
               </div>
             </div>
             <div class="col-12 col-sm-6">
@@ -62,9 +59,7 @@
                   :disabled="sending"
                   type="submit"
                   class="ibtn less-padding"
-                >
-                  Proceed to dashboard
-                </button>
+                >Proceed to dashboard</button>
               </div>
             </div>
           </div>

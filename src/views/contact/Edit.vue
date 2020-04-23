@@ -1,9 +1,11 @@
 <template>
   <div class="form-holder">
-             <loading :active.sync="loading" 
-        :can-cancel="false" 
-       :width="45"
-        :is-full-page="true"></loading>
+    <loading
+      :active.sync="loading"
+      :can-cancel="false"
+      :width="45"
+      :is-full-page="true"
+    ></loading>
     <div class="form-content">
       <div class="form-items">
         <div class="website-logo-inside">
@@ -60,7 +62,7 @@
                   type="submit"
                   class="ibtn less-padding"
                 >
-                {{btntext}}
+                  {{ btntext }}
                 </button>
               </div>
             </div>
@@ -92,33 +94,32 @@ export default {
     save() {
       let token = localStorage.getItem("token");
       this.loading = true;
-      this.btntext ="Please wait"
-    let options = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    };
-    this.$http
-      .post(`${this.$config.ROOT_API}/contact/update`, this.contact, options)
-      .then(res => {
-        this.loading = false;
-      this.btntext ="Save changes"
-if(res.data.success){
-this.$toast.success(res.data.message)
-localStorage.setItem('lastid', this.contact._id)
-this.$router.push({name: "Showcontact"})
-}
-else{
-this.$toast.warning(res.data.message)
-}
-      })
-      .catch(err => {
-    this.loading = false;
-    this.btntext ="Save changes"
-    this.$toast.error("Network error")
-    console.log(err)
-      });
-    },
+      this.btntext = "Please wait";
+      let options = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+      this.$http
+        .post(`${this.$config.ROOT_API}/contact/update`, this.contact, options)
+        .then(res => {
+          this.loading = false;
+          this.btntext = "Save changes";
+          if (res.data.success) {
+            this.$toast.success(res.data.message);
+            localStorage.setItem("lastid", this.contact._id);
+            this.$router.push({ name: "Showcontact" });
+          } else {
+            this.$toast.warning(res.data.message);
+          }
+        })
+        .catch(err => {
+          this.loading = false;
+          this.btntext = "Save changes";
+          this.$toast.error("Network error");
+          console.log(err);
+        });
+    }
   },
   created() {
     let token = localStorage.getItem("token");
@@ -136,20 +137,17 @@ this.$toast.warning(res.data.message)
     this.$http
       .post(`${this.$config.ROOT_API}/contact/fetch`, data, options)
       .then(res => {
-          this.loading = false
-          if (res.data.success) {
-        this.contact = res.data.contact;
-        this.sync = true;
-          } 
-          else {
-              this.$toast.warning(res.data.message);
-              this.$router.push({name: 'Dashboard'})
-          }
-
-
+        this.loading = false;
+        if (res.data.success) {
+          this.contact = res.data.contact;
+          this.sync = true;
+        } else {
+          this.$toast.warning(res.data.message);
+          this.$router.push({ name: "Dashboard" });
+        }
       })
       .catch(err => {
-         this.loading = false
+        this.loading = false;
         console.log(err);
         this.$toast.error("Network error!");
       });
